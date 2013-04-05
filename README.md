@@ -30,13 +30,13 @@ shows the match results for each week
 displays a 2 dimensional heat map of which players played with which players  
  
 ### Computation of Points ###
-Each player starts with 800 points at the beginning of the league. Calculation of points for each match is based on the [Elo rating system](http://en.wikipedia.org/wiki/Elo_rating_system) used in Chess leagues. The points earned by winner is inversely proportional to the odds of the winning (lower the odds, higher the points) where the odds are based on previous points. The losing team loses half of the points earned by the winning team.
+Each player starts with 800 points at the beginning of the league. Calculation of points for each match is based on the [Elo rating system](http://en.wikipedia.org/wiki/Elo_rating_system) used in Chess leagues. The points earned by winner is inversely proportional to the odds of winning (lower the odds, higher the points) where the odds are based on previous points. The losing team loses half of the points earned by the winning team.
 
 	R_w = average point of winning team (up to last week)  
 	R_l = average point of losing team (up to last week)  
-	Q_w = math.pow(10,R_w/400.) "power" of the winning team  
-	Q_l = math.pow(10,R_l/400.) "power" of the losing team  
-	E_w = Q_w/(Q_w+Q_l) "probability" that the winning team will win (e.g., 0.5 if average points are equal)  
+	Q_w = math.pow(10,R_w/400.) the "power" of winning team  
+	Q_l = math.pow(10,R_l/400.) the "power" of losing team  
+	E_w = Q_w/(Q_w+Q_l) the "probability" of winning (e.g., 0.5 if average points are equal)  
 	Points earned by winnig team members = 32*(1-E_w)
  
 
