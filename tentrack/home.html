@@ -1,0 +1,11 @@
+{% extends "tentrack/base.html" %}
+{% block content %}
+<h1>Welcome to tentrack!</h1>
+<p><a href="/player/">Scoreboard</a></p>
+{% url tentrack_weekly this_week.id as tw_url %}
+<p><a href="{{ tw_url }}">OPEN week</a></p>
+<p><a href="/week/">Weekly match results</a></p>
+<p><a href="/mentors/">Mentors</a></p>
+<p><a href="/pmatrix/">Play Matrix</a></p>
+<p><a href="/gallery/">Visit the Gallery</a></p>
+{% endblock %}

@@ -1,0 +1,44 @@
+{% extends "tentrack/base.html" %}
+{% block content %}
+
+<p>Number of matches played together as partner or opponent</p>
+
+    <table border="1" style="font-size:x-small">
+    {% for row in pmtable %}
+        <tr>
+        {% for el in row %}
+            <td style="text-align:center">{{ el }}</td>
+        {% endfor %}
+        </tr>
+    {% endfor %}
+    </table>
+
+<p><a href="/">Home</a></p>
+
+<script>
+var d=document.getElementsByTagName("td");
+var max_level=0;
+for (var i=0; i<d.length; i++) {
+    var text=d[i].textContent;
+    var result=text.match(/^\d+$/);
+    if (result!=null){
+        var level=parseInt(result);
+        if (level>max_level) {max_level=level;}
+    }
+}
+for (var i=0; i<d.length; i++) {
+    var text=d[i].textContent;
+    var result=text.match(/^\d+$/);
+    if (result!=null){
+        var level=parseInt(result);
+        var hue=Math.floor(230*(1-level/max_level));
+        var psat=75+Math.floor(20*level/max_level);
+        var plite=25+Math.floor(30*level/max_level);
+        var alpha=0.9;
+    	d[i].style.backgroundColor = 'hsla('+hue+','+psat+'%,'+plite+'%,'+alpha+')';
+    }
+}
+</script>
+
+{% endblock %}
+

@@ -1,0 +1,27 @@
+{% extends "tentrack/base.html" %}
+{% block content %}
+{% if player_list %}
+    <table border="1">
+    <tr>
+    <th>Rank</th>
+    <th>Name</th>
+    <th>Points</th>
+    <th>Wins</th>
+    <th>Losses</th>
+    </tr>
+    {% for player in player_list %}
+        <tr>
+        <td>{{ forloop.counter }}</td>
+        <td><a href="{{ player.id }}/">{{ player.name }}</a></td>
+        <td>{{ player.points }}</td>
+        <td>{{ player.match_w.count }}</td>
+        <td>{{ player.match_l.count }}</td>
+        </tr>
+    {% endfor %}
+    </table>
+{% else %}
+    <p>No players are available.</p>
+{% endif %}
+
+<p><a href="/">Home</a></p>
+{% endblock %}

@@ -1,0 +1,14 @@
+{% extends "tentrack/base.html" %}
+{% block content %}
+{% if week_list %}
+    <ul>
+    {% for week in week_list %}
+        <li><a href="/week/{{ week.id }}/">Week {{ week.id }}{% if week.open %} OPEN{% endif %}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No weeks are available.</p>
+{% endif %}
+
+<p><a href="/">Home</a></p>
+{% endblock %}

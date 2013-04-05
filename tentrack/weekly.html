@@ -1,0 +1,22 @@
+{% extends "tentrack/base.html" %}
+{% block content %}
+{% load tentrack_extras %}
+<h1>Week {{ week.id }}</h1>
+{% if week.open %}
+<p><a href="/post/">Post new match result</a></p>
+{% endif %}
+<table>
+    {% for match in week.match_set.all %}
+        <tr>
+        <td>[{{ match.date }}]</td>
+        <td>{% for player in match.player_w.all %}{% if not forloop.first %}/ {% endif %}{{ player.name }}{% endfor %}</td>
+        <td>{{ match.get_score_display }}</td>
+        <td>{% for player in match.player_l.all %}{% if not forloop.first %}/ {% endif %}{{ player.name }}{% endfor %}</td>
+        <td>({{ match.pgain }}, {{ match.pgain|halfminus }})</td>
+        </tr>
+    {% endfor %}
+</table>
+
+<p><a href="/week/">Weekly match results</a></p>
+<p><a href="/">Home</a></p>
+{% endblock %}

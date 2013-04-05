@@ -1,0 +1,34 @@
+{% extends "tentrack/base.html" %}
+{% block content %}
+{% load tentrack_extras %}
+<h1>{{ player.name }}</h1>
+<p> Points: {{player.points}} </p>
+<p> Matches Won: {{ player.match_w.count }}</p>
+<table>
+    {% for m in player.match_w.all %}
+    <tr>
+        <td>[{{ m.date }}]</td>
+        <td>{% for p in m.player_w.all %}{% if not forloop.first %}/ {% endif %}{{ p.name }}{% endfor %}</td>
+        <td>{{ m.get_score_display }}</td>
+        <td>{% for p in m.player_l.all %}{% if not forloop.first %}/ {% endif %}{{ p.name }}{% endfor %}</td>
+        <td>({{ m.pgain }}, {{ m.pgain|halfminus }})</td>
+    </tr>
+    {% endfor %}
+</table>
+<p> Matches Lost: {{ player.match_l.count }}</p>
+<table>
+    {% for m in player.match_l.all %}
+    <tr>
+        <td>[{{ m.date }}]</td>
+        <td>{% for p in m.player_w.all %}{% if not forloop.first %}/ {% endif %}{{ p.name }}{% endfor %}</td>
+        <td>{{ m.get_score_display }}</td>
+        <td>{% for p in m.player_l.all %}{% if not forloop.first %}/ {% endif %}{{ p.name }}{% endfor %}</td>
+        <td>({{ m.pgain }}, {{ m.pgain|halfminus }})</td>
+    </tr>
+    {% endfor %}
+</table>
+
+<p><a href="/player/">Scoreboard</a></p>
+<p><a href="/">Home</a></p>
+{% endblock %}
+

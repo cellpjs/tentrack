@@ -1,0 +1,20 @@
+{% extends "tentrack/base.html" %}
+{% block content %}
+    <table border="1">
+    <tr style="font-size:small">
+    <th>Mentor</th>
+    <th>Mentees</th>
+    <th>Pts*</th>
+    </tr>
+    {% for mentor in mentors_list|dictsortreversed:'mpoints' %}
+        <tr>
+        <td style="color:green">{{ mentor.mentorname }}</td>
+        <td>{% for mentee in mentor.mentees %}{% if not forloop.first %}, {% endif %}{{ mentee.name }}{% endfor %}</td>
+        <td style="color:red">{{ mentor.mpoints }}</td>
+        </tr>
+    {% endfor %}
+    </table>
+    <p>*Average of mentees' points</p>
+
+<p><a href="/">Home</a></p>
+{% endblock %}

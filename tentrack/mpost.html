@@ -1,0 +1,11 @@
+{% extends "tentrack/base.html" %}
+{% block content %}
+<p><a href="/">Home</a></p>
+{% url tentrack_weekly this_week.id as tw_url %}
+<p><a href="{{ tw_url }}">OPEN week</a></p>
+<form action="/post/" method="post">
+{% csrf_token %}
+    {{ form.as_p }}
+<input type="submit" value="Post" />
+</form>
+{% endblock %}
