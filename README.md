@@ -1,9 +1,11 @@
 ## tentrack ##
-is a simple web application for keeping track of tennis match results
+is a simple web application (using Django) for keeping track of tennis match results (suitable for clubs)
 
 Each player is assigned a point which is updated weekly based on the results of matches played in the previous week
 
 Players are ranked by point
+
+We assume doubles league and single-set match with tie-break at 5:5
 
 ### Scoreboard ###
 shows the current points and ranks of players based on match results up to last week
