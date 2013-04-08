@@ -54,7 +54,7 @@ def pmatrix(request):
     players=list(Player.objects.all())
     for p in players:
         p.mcount = p.match_w.count() + p.match_l.count()
-    players.sort(key=attrgetter('mcount'), reverse=True)
+    players.sort(key=attrgetter('mcount', 'points'), reverse=True)
     itab={}
     ind=0
     for p in players:
