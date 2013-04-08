@@ -8,6 +8,7 @@ from django.core.urlresolvers import reverse
 from django.template import RequestContext
 from django.shortcuts import render_to_response, get_object_or_404
 from django.db.models import Avg
+from operator import attrgetter
 
 def home(request):
     this_week = Week.objects.get(open=True) # what if not one?
@@ -49,7 +50,11 @@ def mentors(request):
     return render_to_response('tentrack/mentors.html', {'mentors_list':mentors_list})
 
 def pmatrix(request):
-    players=Player.objects.order_by('-points')    
+    #players=Player.objects.order_by('-points')    
+    players=list(Player.objects.all())
+    for p in players:
+        p.mcount = p.match_w.count() + p.match_l.count()
+    players.sort(key=attrgetter('mcount'), reverse=True)
     itab={}
     ind=0
     for p in players:
